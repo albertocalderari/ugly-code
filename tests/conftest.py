@@ -49,7 +49,7 @@ def orders(items) -> Iterable[tuple[str, list[dict[str, Any]]]]:
 
 
 @fixture()
-def setup_dynamo(orders, monkeypatch):
+def dynamo_client(orders, monkeypatch):
     monkeypatch.setenv("AWS_DEFAULT_REGION", "us-east-1")
     with mock_aws():
         c = boto3.client("dynamodb")
@@ -83,7 +83,7 @@ def setup_dynamo(orders, monkeypatch):
 
 
 @fixture
-def client(setup_dynamo):
+def client(dynamo_client):
     with mock_aws():
         from main import app
         yield TestClient(app)
