@@ -6,15 +6,12 @@ venv:
 
 .PHONY: install
 install:
-	pip3 install -r .requirements.txt
+	pip3 install -r ./requirements.txt
 
 .PHONY: install-dev
 install-dev:
-	pip3 install --upgrade -r .requirements.txt --no-compile
+	pip3 install --upgrade -r ./requirements.txt --no-compile
 
-.PHONY: install-jup
-install-jup:
-	pip3 install --upgrade -r .requirements/jupyter.txt
 
 .PHONY: test
 test:
