@@ -1,1 +1,7 @@
 .idea
+.venv
+.py[i,c]
+.coverage
+*.xml
+.pytype
+

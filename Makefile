@@ -30,7 +30,7 @@ coverage: venv
 
 .PHONY: type-check
 type-check: ## typechecks your file for you
-	pytype . -j 10 --none-is-not-bool
+	pytype . -j 1 --none-is-not-bool
 
 .PHONY: run
 run:

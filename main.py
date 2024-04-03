@@ -25,14 +25,17 @@ def list_item() -> list:
     result = Client.scan(
         TableName='orders'
     )
-    r = result['Items']
+    items: None | list = result.get('Items')
     try:
-        if not r:
-            raise ValueError("no results")
+        match items:
+            case list():
+                raise ValueError("no results")
+        r = result['Items']
+        print(r)
     except Exception:
         return PlainTextResponse(content="not found", status_code=404)
-    logger.info(f"Fetched {len(r)} orders")
-    return r
+    logger.info(f"Fetched {len(result['Items'])} orders")
+    return result['Items']
 
 
 @app.post("/get-order", status_code=201)
