@@ -21,7 +21,7 @@ test:
 coverage: venv
 	rm -f .coverage
 	rm -f coverage.xml
-	$(VENV)/python -m pip install --upgrade -r .requirements/dev.txt --no-compile
+	$(VENV)/python -m pip install --upgrade -r ./requirements.txt --no-compile
 	$(VENV)/python -m coverage run -m pytest tests/ --disable-warnings
 	$(VENV)/python -m coverage report -m --omit=tests
 	$(VENV)/python -m coverage xml
