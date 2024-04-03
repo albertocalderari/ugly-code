@@ -18,7 +18,7 @@ test:
 	pytest -vv --disable-warnings tests/
 
 .PHONY: coverage
-coverage: environment-variable-default venv
+coverage: venv
 	rm -f .coverage
 	rm -f coverage.xml
 	$(VENV)/python -m pip install --upgrade -r .requirements/dev.txt --no-compile
