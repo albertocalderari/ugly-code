@@ -11,7 +11,7 @@ def test_get_order(client):
         json={"id": "123"}
     )
     expected = {
-        'basket': [
+        'details': [
             {
                 'id': '1',
                 'name': 'chicken',
@@ -37,7 +37,7 @@ def test_post_new_order(client):
         url="/create-order",
         json={
             "id": "1234",
-            'basket': [
+            'details': [
                 {
                     'id': '1',
                     'name': 'chicken',
@@ -54,7 +54,7 @@ def test_post_existing_order(client, dynamo_client):
         url="/create-order",
         json={
             "id": "2",
-            'basket': [
+            'details': [
                 {
                     'id': '1',
                     'name': 'chicken',
@@ -74,7 +74,7 @@ def test_post_existing_order(client, dynamo_client):
         }
     )
     assert actual['Item'] == {
-        'basket': {
+        'details': {
             'L': [
                 {'M':
                     {
@@ -93,7 +93,7 @@ def test_update_order(client, dynamo_client):
         url="/update-order",
         json={
             "id": "2",
-            'basket': [
+            'details': [
                 {
                     'id': '1',
                     'name': 'chicken',
@@ -113,7 +113,7 @@ def test_update_order(client, dynamo_client):
         }
     )
     assert actual['Item'] == {
-        'basket': {
+        'details': {
             'L': [
                 {'M':
                     {
@@ -132,7 +132,7 @@ def test_update_order_not_found(client, dynamo_client):
         url="/update-order",
         json={
             "id": "2000",
-            'basket': [
+            'details': [
                 {
                     'id': '1',
                     'name': 'chicken',

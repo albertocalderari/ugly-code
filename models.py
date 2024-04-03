@@ -7,7 +7,7 @@ class Config:
 
 class Order(BaseModel):
     id: str
-    basket: list
+    details: list
 
 
 class GetOrder(BaseModel):
@@ -18,3 +18,17 @@ class item(BaseModel):
     quantity: int
     name: str
     id: str
+
+
+class User(BaseModel):
+    id: str
+    details: list
+
+
+class GetUser(BaseModel):
+    id: str
+
+
+class UserDetails(BaseModel):
+    name: str
+    surname: str

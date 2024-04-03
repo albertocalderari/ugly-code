@@ -42,8 +42,8 @@ def orders(items) -> Iterable[tuple[str, list[dict[str, Any]]]]:
     out = []
     for idx in range(0, 200):
         basket_size = idx % 3 + 1
-        basket = [i.model_dump() for i in items[:basket_size]]
-        order = (f"{idx}", basket)
+        details = [i.model_dump() for i in items[:basket_size]]
+        order = (f"{idx}", details)
         out.append(order)
     return out
 
@@ -69,14 +69,14 @@ def dynamo_client(orders, monkeypatch):
             ],
             BillingMode="PAY_PER_REQUEST"
         )
-        for order_id, basket in orders:
-            dynamo_basket = to_dynamo(basket)
+        for order_id, details in orders:
+            dynamo_basket = to_dynamo(details)
             hash_key = to_dynamo(order_id)
             c.put_item(
                 TableName='orders',
                 Item={
                     "id": hash_key,
-                    "basket": dynamo_basket
+                    "details": dynamo_basket
                 }
             )
         yield c

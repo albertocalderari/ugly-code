@@ -1,6 +1,7 @@
 fastapi
 pydantic>2.0.0
 coverage
+uvicorn
 httpx
 pytest
 boto3
